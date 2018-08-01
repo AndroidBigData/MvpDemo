@@ -6,6 +6,7 @@ import com.lzy.okgo.model.Response;
 import com.zjwam.mvpdemo.Bean.EmptyBean;
 import com.zjwam.mvpdemo.Bean.ResponseBean;
 import com.zjwam.mvpdemo.Utils.HttpErrorMsg;
+import com.zjwam.mvpdemo.callback.BasicCallback;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class LoginPresenter implements ILoginPresenter {
         param = new HashMap<>();
         param.put("name",name);
         param.put("pass",pass);
-        loginModel.getData("http://zkw.org.cn/api/login/login", context, param, new LoginModel.CallBack() {
+        loginModel.getData("http://zkw.org.cn/api/login/login", context, param, new BasicCallback<ResponseBean<EmptyBean>>() {
             @Override
             public void onSuccess(Response<ResponseBean<EmptyBean>> response) {
                 loginView.loginResult(response.body().msg);
